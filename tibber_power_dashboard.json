@@ -1,0 +1,74 @@
+{
+  "title": "Tibber Live Power",
+  "views": [
+    {
+      "title": "Tibber",
+      "path": "tibber",
+      "icon": "mdi:flash",
+      "cards": [
+        {
+          "type": "markdown",
+          "content": "## Tibber live usage\nReplace the example entity IDs with your own from **Settings → Devices & Services → Entities**."
+        },
+        {
+          "type": "entities",
+          "title": "Now",
+          "show_header_toggle": false,
+          "entities": [
+            {
+              "entity": "sensor.tibber_pulse_power",
+              "name": "Live power"
+            },
+            {
+              "entity": "sensor.electricity_price_home",
+              "name": "Current price"
+            },
+            {
+              "entity": "sensor.accumulated_consumption_current_hour",
+              "name": "Consumption this hour"
+            }
+          ]
+        },
+        {
+          "type": "gauge",
+          "entity": "sensor.tibber_pulse_power",
+          "name": "Live Power",
+          "unit": "W",
+          "min": 0,
+          "max": 12000,
+          "severity": {
+            "green": 0,
+            "yellow": 3000,
+            "red": 7000
+          }
+        },
+        {
+          "type": "history-graph",
+          "title": "Power (last 2h)",
+          "hours_to_show": 2,
+          "refresh_interval": 10,
+          "entities": [
+            "sensor.tibber_pulse_power"
+          ]
+        },
+        {
+          "type": "statistics-graph",
+          "title": "Power trend (24h)",
+          "chart_type": "line",
+          "period": "hour",
+          "days_to_show": 1,
+          "stat_types": [
+            "mean",
+            "max"
+          ],
+          "entities": [
+            {
+              "entity": "sensor.tibber_pulse_power",
+              "name": "Power"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
